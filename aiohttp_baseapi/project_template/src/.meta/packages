@@ -1,0 +1,13 @@
+--trusted-host pypi.wargaming.net
+--extra-index-url http://pypi.wargaming.net/root/prod/
+
+aiohttp==2.3.8
+aiopg==0.13.1
+alembic==0.9.2
+SQLAlchemy==1.1.10
+python-json-logger==0.1.5
+jsonschema==2.6.0
+alchemyjsonschema==0.5.0
+
+aiosqlalchemy_miniorm>=0.2,<0.3
+aiohttp_baseapi[models]
