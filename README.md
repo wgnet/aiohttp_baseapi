@@ -1,5 +1,8 @@
 # aiohttp_baseapi
 
+[![PyPI](https://img.shields.io/pypi/v/aiohttp-baseapi.svg?maxAge=3600)](https://pypi.python.org/pypi/aiohttp-baseapi)
+[![Python Versions](https://img.shields.io/pypi/pyversions/aiohttp-baseapi.svg?maxAge=3600)](https://pypi.python.org/pypi/aiohttp-baseapi)
+
 This is a micro framework for building HTTP APIs on a high level of abstraction on top of aiohttp.
 It allows to create jsonapi-like HTTP interface to models in declarative way and leaves it possible to fine tune at any level.
 
