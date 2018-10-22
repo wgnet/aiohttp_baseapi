@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import http
-from datetime import datetime
+from datetime import datetime, date
 
 import simplejson as json
 from aiohttp.web import json_response
@@ -17,6 +17,8 @@ class DateTimeEncoder(json.JSONEncoder):
         if isinstance(obj, datetime):
             # Hot fix to add +0000 to all dates
             return '{}+0000'.format(obj.isoformat(timespec='seconds'))
+        elif isinstance(obj, date):
+            return obj.isoformat()
         return super().default(obj)
 
 

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import http
+from datetime import datetime, date
 
 import pytest
 
@@ -8,18 +9,31 @@ from aiohttp_baseapi.response import DateTimeEncoder, json_dumps, JSONResponse
 
 
 class TestDateTimeEncoder:
-    # def test_ok(self, mocker):
-    #     fake_obj = mocker.Mock(spec=datetime)
-    #
-    #     datetime_encoder = DateTimeEncoder()
-    #
-    #     compared_obj = datetime_encoder.default(fake_obj)
-    #     expected_obj = fake_obj.isoformat.return_value
-    #
-    #     assert compared_obj == expected_obj
+    def test_ok(self, mocker):
+        fake_obj = mocker.Mock(spec=datetime)
+
+        datetime_encoder = DateTimeEncoder()
+
+        compared_obj = datetime_encoder.default(fake_obj)
+        expected_obj = '{}+0000'.format(fake_obj.isoformat.return_value)
+
+        assert compared_obj == expected_obj
 
     def test_ok_wo_datetime_obj(self, mocker):
         fake_obj = mocker.Mock()
+        mocked_default = mocker.patch('aiohttp_baseapi.response.json.JSONEncoder.default')
+
+        datetime_encoder = DateTimeEncoder()
+
+        compared_obj = datetime_encoder.default(fake_obj)
+        expected_obj = mocked_default.return_value
+
+        assert compared_obj == expected_obj
+
+        mocked_default.assert_called_once_with(fake_obj)
+
+    def test_ok_date_obj(self, mocker):
+        fake_obj = mocker.Mock(spec=date)
         mocked_default = mocker.patch('aiohttp_baseapi.response.json.JSONEncoder.default')
 
         datetime_encoder = DateTimeEncoder()
